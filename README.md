@@ -1,3 +1,14 @@
+mq-player-angular
+=================
+
+Lecteur embedable de Quizz multimédia, évolution du projet MicroMQ. (https://github.com/MLKiiwy/MicroMQ)
+
+Projet au stade préliminaire.
+
+Example de lecteur de quizz multimédia (version flash/flex : http://www.maxigalop.com/Player?mode=gratuit)
+
+=================
+
 To start server :
 
 grunt serve
@@ -6,9 +17,9 @@ To test app:
 
 grunt test
 
-===
+=================
 
-
+TODO :
 
 Models :
 
@@ -62,7 +73,6 @@ Exemple de règle de question :
 
 
 - 4 choix, 1 bonne reponse
-
 
 rules.json :
 
