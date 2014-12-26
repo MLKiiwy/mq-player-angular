@@ -1,0 +1,33 @@
+{
+	"id": "http://myquizz.com/quizz-schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "quizz schema",
+	"type": "object",
+	"required": ["version", "rules", "data"],
+	"properties": {
+		"version": {
+			"type": "string",
+			"default": "0.1"
+		},
+		"rules": {
+			"$ref": "http://myquizz.com/quizz-rules-schema#",
+			"default": {}
+		},
+		"data": {
+			"type": "object",
+			"required": ["label", "questions"],
+			"properties": {
+				"label" : {
+					"type" : "string",
+					"default": "A quizz"
+				},
+				"questions": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "http://myquizz.com/question-schema#" },
+					"uniqueItems": true
+				}
+			}
+		}
+	},
+}

@@ -1,0 +1,16 @@
+{
+	"id": "http://myquizz.com/answer-schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "answer schema",
+	"type": ["string", "object"],
+	"required": ["label"],
+	"properties": {
+		"label": {
+			"type": "string",
+			"default": "An answer",
+		},
+		"media": {
+			"$ref": "http://myquizz.com/media-schema#"
+		}
+	},
+}

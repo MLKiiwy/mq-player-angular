@@ -1,0 +1,26 @@
+{
+	"id": "http://myquizz.com/quizz--rules-schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "quizz schema",
+	"type": "object",
+	"properties": {
+		"questions": {
+			"type": "object",
+			"properties": {
+				"answers" : {
+					"type" : "object",
+					"properties" : {
+						"min" : {
+							"type" : "integer",
+							"minimum": 1
+						},
+						"max" : {
+							"type" : "integer",
+							"minimum": 1
+						}
+					}
+				},
+			}
+		}
+	},
+}

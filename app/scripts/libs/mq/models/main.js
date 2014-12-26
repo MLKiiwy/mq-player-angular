@@ -1,0 +1,1 @@
+angular.module(MQ.modules.models.label, []);

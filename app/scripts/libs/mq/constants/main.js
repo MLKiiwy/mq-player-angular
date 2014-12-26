@@ -1,0 +1,1 @@
+var MQ = angular.isDefined(MQ) ? MQ : {};

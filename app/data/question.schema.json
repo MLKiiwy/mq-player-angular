@@ -1,0 +1,28 @@
+{
+	"id": "http://myquizz.com/question-schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"description": "question schema",
+	"type": "object",
+	"required": ["label", "answers"],
+	"properties": {
+		"label": {
+			"type": "string",
+			"default": "A question ?"
+		},
+		"answers": {
+			"type": "array",
+			"minItems": 1,
+			"items": { "$ref": "http://myquizz.com/answer-schema#" },
+			"uniqueItems": true
+		},
+		"falseAnswers": {
+			"type": "array",
+			"minItems": 0,
+			"items": { "$ref": "http://myquizz.com/answer-schema#" },
+			"uniqueItems": true
+		},
+		"media": {
+			"$ref": "http://myquizz.com/media-schema#"
+		}
+	},
+}
