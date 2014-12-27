@@ -26,29 +26,25 @@ angular.module(MQ.modules.directives.players.label, [
 
 		// Private State of Player
 		var State = {
-			INIT: 'INIT',
-			LOAD: 'LOAD',
-			START: 'START',
-			GAME: 'GAME',
-			END: 'END',
-			ERROR: 'ERROR'
+			INIT: 'init',
+			LOAD: 'load',
+			START: 'start',
+			GAME: 'game',
+			END: 'end',
+			ERROR: 'error'
 		};
 
-		var View = {},
-			viewsUrls = {
-				start: 'views/player/start.html',
-				question : 'views/player/question.html',
-				end: 'views/player/end.html'
-			};
-
-		View.getInitialView = function() {
-			return View.buildView('start');
-		}
+		var View = {};
 
 		View.buildView = function(name) {
+			var templatePath = 'views/%(directive)s/default/%(state)s.html';
+			templatePath = _.string.sprintf(templatePath, {
+				directive: 'player',
+				state: name,
+			});
 			return {
 				type:name,
-				templateUrl: viewsUrls[name]
+				templateUrl: templatePath
 			};
 		};
 
@@ -60,7 +56,7 @@ angular.module(MQ.modules.directives.players.label, [
 			restrict: 'E',
 			scope: {
 			},
-			templateUrl: 'views/player/playerMain.html',
+			templateUrl: 'views/player/container.html',
 			controller: function($scope, $attrs, $element) {
 				var self = {};
 
@@ -96,7 +92,7 @@ angular.module(MQ.modules.directives.players.label, [
 					$scope.state = newState;
 
 					// Determine view
-					$scope.currentView = View.getInitialView();
+					$scope.currentView = View.buildView($scope.state);
 				}
 
 				self.init = function() {
@@ -123,7 +119,7 @@ angular.module(MQ.modules.directives.players.label, [
 
 					self.attachEvents();
 
-					self.quizzLoader.load($attrs.src);
+					//self.quizzLoader.load($attrs.src);
 				};
 
 				self.onError = function(err) {
