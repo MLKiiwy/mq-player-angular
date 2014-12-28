@@ -15,5 +15,6 @@ angular
     'ngResource',
     'ngSanitize',
     'ngTouch',
+    'ngMaterial',
     MQ.modules.label
   ]);
