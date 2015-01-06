@@ -1,13 +1,6 @@
-angular.module(MQ.modules.directives.players.label, [
-	MQ.modules.models.label,
-	MQ.modules.directives.panels.label,
-	MQ.modules.directives.buttons.label,
-	MQ.modules.utils.label,
-	MQ.modules.events.label,
-	MQ.modules.services.label
-])
+angular.module(MQ.modules.directives.label)
 
-.directive(MQ.modules.directives.players.base, [
+.directive(MQ.modules.directives.player, [
 
 	'$http',
 	'$rootScope',
@@ -54,50 +47,43 @@ angular.module(MQ.modules.directives.players.label, [
 
 		return {
 			restrict: 'E',
-			scope: {
-			},
+			scope: {},
 			templateUrl: 'views/player/container.html',
 			controller: function($scope, $attrs, $element) {
 				var self = {};
 
-				console.log('mqPlayer::controller()');
-
-				self.getNextViewName = function() {
-					var name = '';
-					switch ($scope.currentView.type) {
-						case 'start':
-							name = 'question';
-							break;
-
-						case 'question':
-							name = 'end';
-							break;
-
-					}
-					return name;
-				};
-
-				self.nextView = function() {
-					console.log('mqPlayer::controller:nextView()');
-
-					$scope.currentView = View.buildView(self.getNextViewName());
-					$scope.$apply();
-				};
-
-				self.showView = function(value) {
-					//TODO
-				};
+				Logger.info('mqPlayer::controller()');
 
 				self.goToState = function(newState) {
+
+					// Exit state
+					switch ($scope.state) {
+						default:
+						break;
+					}
+
 					$scope.state = newState;
+
+					switch ($scope.state) {
+						case State.GAME:
+							$scope.question = $scope.quizz.getQuestion(0);
+						break;
+					}
 
 					// Determine view
 					$scope.currentView = View.buildView($scope.state);
-				}
+					//$scope.$apply();
+				};
 
 				self.init = function() {
 
 					Logger.info('mqPlayer::controller:init()', self);
+
+					$scope.title = 'Quizz player';
+					$scope.quizz = {};
+					$scope.error = null;
+
+					$scope.question = {};
 
 					// Set up initial values
 					//
@@ -114,12 +100,17 @@ angular.module(MQ.modules.directives.players.label, [
 
 					self.goToState(State.INIT);
 
-					$scope.quizz = {};
 					self.quizzLoader = quizzLoader;
 
 					self.attachEvents();
 
-					//self.quizzLoader.load($attrs.src);
+					self.quizzLoader.load($attrs.src);
+				};
+
+				self.setQuizz = function(quizz) {
+					$scope.quizz = quizz;
+
+					$scope.title = quizz.getLabel();
 				};
 
 				self.onError = function(err) {
@@ -136,29 +127,41 @@ angular.module(MQ.modules.directives.players.label, [
 
 				self.onEndLoadQuizz = function(e) {
 					if (e.success) {
-						$scope.quizz = e.data.quizz;
+						self.setQuizz(e.data.quizz);
 						self.goToState(State.START);
 					} else {
 						self.onError(e.data);
 					}
 				};
 
+				self.onStartEvent = function(e) {
+					self.goToState(State.GAME);
+				};
+
 				self.attachEvents = function() {
 
-					console.log('mqPlayer::controller::attachEvents()');
+					Logger.info('mqPlayer::controller::attachEvents()');
 
-					$rootScope.$on(MQ.events.startLoad, function(e, data) {
-						self.onStartLoadQuizz();
+					$rootScope.$on(MQ.events.loader.start, function(e, data) {
+						self.onStartLoadQuizz(data);
 					});
 
-					$rootScope.$on(MQ.events.endLoad, function(e, data) {
+					$rootScope.$on(MQ.events.loader.end, function(e, data) {
 						self.onEndLoadQuizz(data);
 					});
 
 					// Cet event ne devrait pas etre la, on est au level quizz
 					// en gros on doit ecouter les event du quizz ... on delegue les events de questions aux questions, etc ....
-					$scope.$on(MQ.events.actions.next, function(e, data) {
-						self.nextView();
+					$scope.$on(MQ.events.quizz.start, function(e, data) {
+						$scope.$apply(function() {
+							self.onStartEvent(data);
+						});
+					});
+
+					$scope.$on(MQ.events.error, function(e, data) {
+						$scope.$apply(function() {
+							self.onError(data.data);
+						});
 					});
 
 					// Ces events provoqueront soit des determinateView (changement d'état)

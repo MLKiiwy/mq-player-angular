@@ -2,23 +2,18 @@ MQ.modules = {
 	label : 'mq',
 	directives: {
 		label: 'mq.directives',
-		players: {
-			label: 'mq.directives.players',
-			base: 'mqPlayer',
-		},
-		buttons: {
-			label: 'mq.directives.buttons',
-			next: 'mqNext',
-		},
-		panels: {
-			label : 'mq.directives.panels',
-			panel: 'mqPanel',
-		}
+		player: 'mqPlayer',
+		question: 'mqQuestion',
+		answer: 'mqAnswer',
+		panel: 'mqPanel',
+		button: 'mqButton',
 	},
 	models: {
 		label: 'mq.models',
 		base: 'mqBaseModel',
 		quizz: 'mqQuizz',
+		rules: 'mqRules',
+		question: 'mqQuestion',
 	},
 	constants: {
 		label: 'mq.constants',

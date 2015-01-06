@@ -1,1 +1,0 @@
-angular.module(MQ.modules.directives.buttons.label, []);

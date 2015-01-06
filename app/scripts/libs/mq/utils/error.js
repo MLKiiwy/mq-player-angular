@@ -16,6 +16,11 @@ angular.module(MQ.modules.utils.label)
 				return data && angular.isDefined(data.isMq) ? data.isMq : false;
 			},
 
+			buildException: function(msg) {
+				var exception = new Exception(msg);
+				return exception;
+			},
+
 			buildData: function(input, isMq) {
 				var output;
 

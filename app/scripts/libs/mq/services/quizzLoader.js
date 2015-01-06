@@ -27,12 +27,12 @@ angular.module(MQ.modules.services.label)
 		this.load = function(value) {
 			var self = this;
 
-			$rootScope.$broadcast(MQ.events.startLoad);
+			$rootScope.$broadcast(MQ.events.loader.start);
 			return $http.get(value).then(function(content) {
-				var instance = new Quizz(content),
-					event = new Event(MQ.events.endLoad, true, {quizz: instance}, self, true);
+				var instance = Quizz.buildFromJson(content.data),
+					event = new Event(MQ.events.loader.end, true, {quizz: instance}, self, true);
 
-				$rootScope.$broadcast(MQ.events.endLoad, event);
+				$rootScope.$broadcast(MQ.events.loader.end, event);
 
 				return instance;
 			}, function(reason) {
@@ -40,8 +40,8 @@ angular.module(MQ.modules.services.label)
 
 				error.exception = reason;
 
-				$rootScope.$broadcast(MQ.events.endLoad,
-					new Event(MQ.events.endLoad, false, error, self, true));
+				$rootScope.$broadcast(MQ.events.loader.end,
+					new Event(MQ.events.loader.end, false, error, self, true));
 
 				return ErrorUtil.buildDeferred(self, Errors.loadFailed, reason);
 			});

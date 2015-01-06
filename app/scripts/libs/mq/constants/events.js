@@ -1,7 +1,10 @@
 MQ.events = {
-	actions: {
-		next: 'mq-events-actions-next'
+	quizz: {
+		start: 'mq-events-quizz-start'
 	},
-	startLoad: 'mq-events-start-load',
-	endLoad: 'mq-events-end-load',
+	loader: {
+		start: 'mq-events-loader-start',
+		end: 'mq-events-loader-end',
+	},
+	error: 'mq-events-error'
 }

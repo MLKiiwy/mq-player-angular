@@ -1,0 +1,1 @@
+angular.module(MQ.modules.directives.label, []);

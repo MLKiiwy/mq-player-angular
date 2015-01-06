@@ -17,8 +17,11 @@ angular.module(MQ.modules.models.label)
 
 	BaseModel.prototype = angular.extend(BaseModel.prototype, {
 		setData: function(data) {
-			angular.extend(this, bookData);
+			angular.extend(this, data);
 		},
+		getLabel: function() {
+			return angular.isDefined(this.label) ? this.label : '';
+		}
 	});
 
 	return BaseModel;

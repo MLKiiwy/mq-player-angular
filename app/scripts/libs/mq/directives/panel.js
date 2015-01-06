@@ -1,6 +1,6 @@
-angular.module(MQ.modules.directives.panels.label)
+angular.module(MQ.modules.directives.label)
 
-.directive(MQ.modules.directives.panels.panel, function() {
+.directive(MQ.modules.directives.panel, function() {
 	return {
 		restrict: 'A',
 		scope: {},
