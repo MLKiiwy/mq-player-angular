@@ -14,6 +14,7 @@ MQ.modules = {
 		quizz: 'mqQuizz',
 		rules: 'mqRules',
 		question: 'mqQuestion',
+		answer: 'mqAnswer',
 	},
 	constants: {
 		label: 'mq.constants',
@@ -30,5 +31,6 @@ MQ.modules = {
 		label: 'mq.services',
 		quizzLoader: 'mqQuizzLoader',
 		logger: 'mqLogger',
+		ruler: 'mqRuler',
 	}
 }

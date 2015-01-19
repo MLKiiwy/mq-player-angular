@@ -1,7 +1,7 @@
 <div layout="row">
 	<span>{{ question.label }}</span>
 	<ul>
-		<li ng-repeat="choice in choices" mq-answer>
+		<li ng-repeat="choice in choices track by $index" mq-answer>
 			<span>{{ choice.label }}</span>
 		</li>
 	</ul>

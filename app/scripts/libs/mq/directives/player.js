@@ -84,6 +84,7 @@ angular.module(MQ.modules.directives.label)
 					$scope.error = null;
 
 					$scope.question = {};
+					$scope.currentQuestionOptions = {};
 
 					// Set up initial values
 					//
