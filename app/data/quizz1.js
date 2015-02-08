@@ -14,7 +14,7 @@
 			{
 				"label" : "Question 1",
 				"answers": ["Reponse 1", "Reponse 2"],
-				"falseAnswers" : ["Reponse F1", "Reponse F2"]
+				"falseAnswers" : ["Reponse F1", "Reponse F2", "Reponse F3"]
 			},
 			{
 				"label" : "Question 2",

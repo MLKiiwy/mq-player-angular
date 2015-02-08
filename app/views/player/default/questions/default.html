@@ -1,8 +1,36 @@
-<div layout="row">
+<!--
+<div class="question-label-layer">
 	<span>{{ question.label }}</span>
-	<ul>
-		<li ng-repeat="choice in choices track by $index" mq-answer>
-			<span>{{ choice.label }}</span>
-		</li>
-	</ul>
+</div>
+<div class="answers-label-layer" layout="column" layout-align="center center">
+	<div layout="row" layout-fill layout-align="center center" layout-padding>
+		<md-button layout-fill layout-align="center center">{{ choices[0].label }}</md-button>
+		<md-button layout-fill layout-align="center center">{{ choices[1].label }}</md-button>
+	</div>
+	<div layout="row" layout-fill layout-align="center center" layout-padding>
+		<md-button layout-fill layout-align="center center">{{ choices[2].label }}</md-button>
+		<md-button layout-fill layout-align="center center">{{ choices[3].label }}</md-button>
+	</div>
+</div>
+-->
+<div layout="column" layout-fit>
+	<div hflex="25" layout="column" layout-wrap class="question-label">
+		<span>{{ question.label }}</span>
+	</div>
+	<div hflex="75" >
+		<div layout-fit layout-wrap layout="row">
+			<div class="answer-choice" layout="row">
+				<md-button layout-fill>{{ choices[0].label }}</md-button>
+			</div>
+			<div class="answer-choice" layout="row">
+				<md-button layout-fill>{{ choices[1].label }}</md-button>
+			</div>
+			<div class="answer-choice" layout="row">
+				<md-button layout-fill>{{ choices[2].label }}</md-button>
+			</div>
+			<div class="answer-choice" layout="row">
+				<md-button layout-fill>{{ choices[3].label }}</md-button>
+			</div>
+		</div>
+	</div>
 </div>

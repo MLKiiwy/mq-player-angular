@@ -6,3 +6,58 @@ mq-player {
 .player-content {
 	height:250px;
 }
+
+.question-content {
+	height:250px;
+}
+
+.question-label-layer {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:50%;
+}
+
+.answers-label-layer {
+	position:absolute;
+	bottom:0;
+	right:0;
+	width:50%;
+}
+
+/*  */
+[layout-fit] {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+[hflex] {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	position:relative;
+}
+
+[hflex="25"] {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 25%;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
+}
+
+.answer-choice {
+	height:50%;
+	width:50%;
+	box-sizing: border-box;
+}
+
+.question-label {
+	font-size:1.3em;
+	align-items: center;
+	justify-content:center;
+}
